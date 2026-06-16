@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
@@ -9,10 +8,12 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import { ScaledText as Text } from "./components/AppText";
+import { SettingsProvider, useSettings } from "./components/SettingsContext";
 import { HomeTab } from "./components/HomeTab";
 import { SearchTab } from "./components/SearchTab";
 import { ActionsTab, ConfirmDialog } from "./components/ActionsTab";
-import { SettingsTab, AppSettings, DEFAULT_SETTINGS } from "./components/SettingsTab";
+import { SettingsTab } from "./components/SettingsTab";
 import { ContactDetail } from "./components/ContactDetail";
 import { ContactForm } from "./components/ContactForm";
 import { Contact, INITIAL_CONTACTS } from "./types";
@@ -31,7 +32,9 @@ const NAV_ITEMS: { id: Tab; icon: keyof typeof Ionicons.glyphMap; label: string 
 
 // ─── App ──────────────────────────────────────────────────────────────────────
 
-export default function App() {
+// The actual app UI. Wrapped in <SettingsProvider> by the default export
+// below, so it (and everything it renders) can read the text-size setting.
+function AppContent() {
   // Data
   const [contacts, setContacts] = useState<Contact[]>(INITIAL_CONTACTS);
   const [nextId, setNextId] = useState(
@@ -50,8 +53,8 @@ export default function App() {
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [pendingDelete, setPendingDelete] = useState<Contact | null>(null);
 
-  // Settings
-  const [settings, setSettings] = useState<AppSettings>(DEFAULT_SETTINGS);
+  // Settings (now lives in SettingsContext, not local state)
+  const { settings, setSettings } = useSettings();
 
   // ── Handlers ────────────────────────────────────────────────────────────────
 
@@ -145,7 +148,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.root}>
-      <StatusBar barStyle="light-content" backgroundColor="#b8213a" />
+      <StatusBar barStyle="light-content" backgroundColor="#931c21" />
 
       {/* Main content */}
       <View style={styles.content}>{renderContent()}</View>
@@ -165,7 +168,7 @@ export default function App() {
                 <Ionicons
                   name={active ? (icon.replace("-outline", "") as keyof typeof Ionicons.glyphMap) : icon}
                   size={22}
-                  color={active ? "#b8213a" : "#d4a0aa"}
+                  color={active ? "#931c21" : "#d4a0aa"}
                 />
                 <Text style={[styles.tabLabel, active && styles.tabLabelActive]}>
                   {label}
@@ -193,14 +196,24 @@ export default function App() {
   );
 }
 
+// This is what actually gets rendered by Expo. The Provider sits above
+// AppContent so every screen/component underneath can call useSettings().
+export default function App() {
+  return (
+    <SettingsProvider>
+      <AppContent />
+    </SettingsProvider>
+  );
+}
+
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#b8213a" }, // status bar bg blends with header
+  root: { flex: 1, backgroundColor: "#931c21" }, // status bar bg blends with header
   content: { flex: 1 },
   tabBar: {
     flexDirection: "row",
     backgroundColor: "#fff",
     borderTopWidth: 1,
-    borderColor: "rgba(184,33,58,0.1)",
+    borderColor: "rgba(147,28,33,0.1)",
     paddingBottom: 4,
   },
   tabItem: {
@@ -215,5 +228,5 @@ const styles = StyleSheet.create({
     color: "#d4a0aa",
     letterSpacing: 0.3,
   },
-  tabLabelActive: { color: "#b8213a" },
+  tabLabelActive: { color: "#931c21" },
 });

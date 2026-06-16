@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text,
   TextInput,
   ScrollView,
   TouchableOpacity,
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
+import { ScaledText as Text } from "./AppText";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import { Contact, DEPARTMENTS } from "../types";
@@ -63,7 +63,7 @@ function Field({ label, error, children }: { label: string; error?: string; chil
       {children}
       {error && (
         <View style={fieldStyles.errorRow}>
-          <Ionicons name="alert-circle" size={12} color="#b8213a" />
+          <Ionicons name="alert-circle" size={12} color="#931c21" />
           <Text style={fieldStyles.errorText}>{error}</Text>
         </View>
       )}
@@ -81,13 +81,13 @@ const fieldStyles = StyleSheet.create({
     color: "#7a4a52",
   },
   errorRow: { flexDirection: "row", alignItems: "flex-start", gap: 4, marginTop: 2 },
-  errorText: { fontSize: 12, color: "#b8213a", flex: 1, lineHeight: 16 },
+  errorText: { fontSize: 12, color: "#931c21", flex: 1, lineHeight: 16 },
 });
 
 function inputStyle(hasError: boolean) {
   return {
     ...styles.input,
-    borderColor: hasError ? "#b8213a" : "rgba(184,33,58,0.15)",
+    borderColor: hasError ? "#931c21" : "rgba(147,28,33,0.15)",
     backgroundColor: hasError ? "#fff5f6" : "#fdf0f2",
   };
 }
@@ -162,7 +162,7 @@ export function ContactForm({ contact, onSave, onCancel }: Props) {
         {/* Validation summary */}
         {touched && errorCount > 0 && (
           <View style={styles.errorBanner}>
-            <Ionicons name="alert-circle" size={18} color="#b8213a" />
+            <Ionicons name="alert-circle" size={18} color="#931c21" />
             <View style={{ flex: 1 }}>
               <Text style={styles.errorBannerTitle}>
                 Please fix {errorCount} {errorCount === 1 ? "error" : "errors"} before saving.
@@ -303,7 +303,7 @@ export function ContactForm({ contact, onSave, onCancel }: Props) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f8f5f5" },
   header: {
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     paddingHorizontal: 20,
     paddingTop: 52,
     paddingBottom: 20,
@@ -321,11 +321,11 @@ const styles = StyleSheet.create({
     gap: 12,
     backgroundColor: "#fff5f6",
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.25)",
+    borderColor: "rgba(147,28,33,0.25)",
     borderRadius: 16,
     padding: 16,
   },
-  errorBannerTitle: { fontSize: 13, fontWeight: "600", color: "#b8213a" },
+  errorBannerTitle: { fontSize: 13, fontWeight: "600", color: "#931c21" },
   errorBannerSub: { fontSize: 12, color: "#7a4a52", marginTop: 2 },
   sectionTitle: {
     fontSize: 11,
@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.08)",
+    borderColor: "rgba(147,28,33,0.08)",
     padding: 16,
     gap: 16,
     shadowColor: "#000",
@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
   pickerWrapper: {
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.15)",
+    borderColor: "rgba(147,28,33,0.15)",
     backgroundColor: "#fdf0f2",
     overflow: "hidden",
   },
@@ -372,7 +372,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.2)",
+    borderColor: "rgba(147,28,33,0.2)",
     alignItems: "center",
   },
   cancelBtnText: { fontSize: 15, fontWeight: "600", color: "#7a4a52" },
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 14,
     borderRadius: 16,
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",

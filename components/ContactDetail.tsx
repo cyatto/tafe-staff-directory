@@ -1,11 +1,11 @@
 import React from "react";
 import {
   View,
-  Text,
   ScrollView,
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { ScaledText as Text } from "./AppText";
 import { Ionicons } from "@expo/vector-icons";
 import { Contact, getAvatarStyle, getInitials, getDepartmentName } from "../types";
 
@@ -43,7 +43,7 @@ export function ContactDetail({ contact, onEdit, onDelete, onBack }: Props) {
 
           <View style={styles.actionRow}>
             <TouchableOpacity style={styles.editBtn} onPress={() => onEdit(contact)} activeOpacity={0.8}>
-              <Ionicons name="pencil" size={13} color="#b8213a" />
+              <Ionicons name="pencil" size={13} color="#931c21" />
               <Text style={styles.editBtnText}>Edit</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.deleteBtn} onPress={() => onDelete(contact)} activeOpacity={0.8}>
@@ -59,7 +59,7 @@ export function ContactDetail({ contact, onEdit, onDelete, onBack }: Props) {
         {/* Phone */}
         <View style={styles.detailRow}>
           <View style={styles.detailIcon}>
-            <Ionicons name="call-outline" size={15} color="#b8213a" />
+            <Ionicons name="call-outline" size={15} color="#931c21" />
           </View>
           <View>
             <Text style={styles.detailLabel}>Phone</Text>
@@ -72,7 +72,7 @@ export function ContactDetail({ contact, onEdit, onDelete, onBack }: Props) {
         {/* Department */}
         <View style={styles.detailRow}>
           <View style={styles.detailIcon}>
-            <Ionicons name="business-outline" size={15} color="#b8213a" />
+            <Ionicons name="business-outline" size={15} color="#931c21" />
           </View>
           <View>
             <Text style={styles.detailLabel}>Department</Text>
@@ -85,7 +85,7 @@ export function ContactDetail({ contact, onEdit, onDelete, onBack }: Props) {
         {/* Address */}
         <View style={styles.detailRow}>
           <View style={styles.detailIcon}>
-            <Ionicons name="location-outline" size={15} color="#b8213a" />
+            <Ionicons name="location-outline" size={15} color="#931c21" />
           </View>
           <View style={styles.addressBlock}>
             <Text style={styles.detailLabel}>Address</Text>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f8f5f5" },
   content: { paddingBottom: 32 },
   header: {
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     paddingHorizontal: 20,
     paddingTop: 52,
     paddingBottom: 28,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 99,
   },
-  editBtnText: { fontSize: 13, fontWeight: "700", color: "#b8213a" },
+  editBtnText: { fontSize: 13, fontWeight: "700", color: "#931c21" },
   deleteBtn: {
     flexDirection: "row",
     alignItems: "center",
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.08)",
+    borderColor: "rgba(147,28,33,0.08)",
     overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
@@ -211,14 +211,14 @@ const styles = StyleSheet.create({
   addressBlock: { flex: 1 },
   divider: {
     height: 1,
-    backgroundColor: "rgba(184,33,58,0.07)",
+    backgroundColor: "rgba(147,28,33,0.07)",
     marginLeft: 16,
   },
   idBadge: {
     alignSelf: "center",
     backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.1)",
+    borderColor: "rgba(147,28,33,0.1)",
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 99,

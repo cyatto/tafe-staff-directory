@@ -1,12 +1,12 @@
 import React from "react";
 import {
   View,
-  Text,
   TouchableOpacity,
   ScrollView,
   StyleSheet,
   Modal,
 } from "react-native";
+import { ScaledText as Text } from "./AppText";
 import { Ionicons } from "@expo/vector-icons";
 import { Contact, getAvatarStyle, getInitials, getDepartmentName } from "../types";
 
@@ -36,7 +36,7 @@ export function ConfirmDialog({
       <View style={dialogStyles.overlay}>
         <View style={dialogStyles.box}>
           <View style={dialogStyles.iconWrap}>
-            <Ionicons name="warning-outline" size={26} color="#b8213a" />
+            <Ionicons name="warning-outline" size={26} color="#931c21" />
           </View>
           <Text style={dialogStyles.title}>{title}</Text>
           <Text style={dialogStyles.message}>{message}</Text>
@@ -92,7 +92,7 @@ const dialogStyles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.2)",
+    borderColor: "rgba(147,28,33,0.2)",
     alignItems: "center",
   },
   cancelText: { fontSize: 15, fontWeight: "600", color: "#7a4a52" },
@@ -100,7 +100,7 @@ const dialogStyles = StyleSheet.create({
     flex: 1,
     paddingVertical: 14,
     borderRadius: 16,
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     alignItems: "center",
   },
   confirmText: { fontSize: 15, fontWeight: "600", color: "#fff" },
@@ -159,7 +159,7 @@ export function ActionsTab({
             </View>
             <View style={styles.viewBadge}>
               <Text style={styles.viewBadgeText}>View</Text>
-              <Ionicons name="chevron-forward" size={12} color="#b8213a" />
+              <Ionicons name="chevron-forward" size={12} color="#931c21" />
             </View>
           </TouchableOpacity>
         ) : (
@@ -196,7 +196,7 @@ export function ActionsTab({
           disabled={!selectedContact}
         >
           <View style={[styles.secondaryIcon, !selectedContact && styles.secondaryIconDisabled]}>
-            <Ionicons name="pencil-outline" size={17} color={selectedContact ? "#b8213a" : "#d4a0aa"} />
+            <Ionicons name="pencil-outline" size={17} color={selectedContact ? "#931c21" : "#d4a0aa"} />
           </View>
           <View style={styles.btnInfo}>
             <Text style={[styles.secondaryBtnTitle, !selectedContact && styles.textDisabled]}>Edit Contact</Text>
@@ -217,7 +217,7 @@ export function ActionsTab({
           disabled={!selectedContact}
         >
           <View style={[styles.secondaryIcon, !selectedContact && styles.secondaryIconDisabled]}>
-            <Ionicons name="trash-outline" size={17} color={selectedContact ? "#b8213a" : "#d4a0aa"} />
+            <Ionicons name="trash-outline" size={17} color={selectedContact ? "#931c21" : "#d4a0aa"} />
           </View>
           <View style={styles.btnInfo}>
             <Text style={[styles.secondaryBtnTitle, !selectedContact && styles.textDisabled]}>Delete Contact</Text>
@@ -237,7 +237,7 @@ export function ActionsTab({
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f8f5f5" },
   header: {
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     paddingHorizontal: 20,
     paddingTop: 52,
     paddingBottom: 16,
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 14,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.15)",
+    borderColor: "rgba(147,28,33,0.15)",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.06,
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
   contactName: { fontSize: 14, fontWeight: "600", color: "#1a0a0d" },
   contactDept: { fontSize: 12, color: "#7a4a52", marginTop: 2 },
   viewBadge: { flexDirection: "row", alignItems: "center", gap: 2 },
-  viewBadgeText: { fontSize: 11, fontWeight: "600", color: "#b8213a" },
+  viewBadgeText: { fontSize: 11, fontWeight: "600", color: "#931c21" },
   noContactCard: {
     flexDirection: "row",
     alignItems: "flex-start",
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.08)",
+    borderColor: "rgba(147,28,33,0.08)",
   },
   noContactText: { flex: 1, fontSize: 13, color: "#7a4a52", lineHeight: 20 },
   bold: { fontWeight: "700", color: "#1a0a0d" },
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 16,
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     borderRadius: 16,
     padding: 16,
     shadowColor: "#000",
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.1)",
+    borderColor: "rgba(147,28,33,0.1)",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.06,

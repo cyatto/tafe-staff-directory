@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   TextInput,
   FlatList,
   TouchableOpacity,
   ScrollView,
   StyleSheet,
 } from "react-native";
+import { ScaledText as Text } from "./AppText";
 import { Ionicons } from "@expo/vector-icons";
 import { Contact, DEPARTMENTS, getAvatarStyle, getInitials, getDepartmentName } from "../types";
 
@@ -155,7 +155,7 @@ export function SearchTab({ contacts, onSelect }: Props) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f8f5f5" },
   header: {
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     paddingHorizontal: 20,
     paddingTop: 52,
     paddingBottom: 16,
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   filterBar: {
     backgroundColor: "#fff",
     borderBottomWidth: 1,
-    borderColor: "rgba(184,33,58,0.08)",
+    borderColor: "rgba(147,28,33,0.08)",
   },
   chips: {
     paddingHorizontal: 16,
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     borderRadius: 99,
     backgroundColor: "#fdf0f2",
   },
-  chipActive: { backgroundColor: "#b8213a" },
+  chipActive: { backgroundColor: "#931c21" },
   chipText: { fontSize: 11, fontWeight: "600", color: "#7a4a52" },
   chipTextActive: { color: "#fff" },
   filterMeta: {
@@ -217,8 +217,8 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   filterCount: { fontSize: 12, color: "#7a4a52" },
-  filterDeptName: { color: "#b8213a", fontWeight: "600" },
-  clearAll: { fontSize: 12, fontWeight: "600", color: "#b8213a" },
+  filterDeptName: { color: "#931c21", fontWeight: "600" },
+  clearAll: { fontSize: 12, fontWeight: "600", color: "#931c21" },
   listContent: { padding: 16, gap: 8 },
   row: {
     flexDirection: "row",
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 12,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.08)",
+    borderColor: "rgba(147,28,33,0.08)",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.06,
@@ -274,5 +274,5 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 99,
   },
-  clearBtn2Text: { fontSize: 13, fontWeight: "600", color: "#b8213a" },
+  clearBtn2Text: { fontSize: 13, fontWeight: "600", color: "#931c21" },
 });

@@ -1,32 +1,18 @@
 import React from "react";
 import {
   View,
-  Text,
   ScrollView,
   TouchableOpacity,
   StyleSheet,
   Switch,
 } from "react-native";
+import { ScaledText as Text } from "./AppText";
 import { Ionicons } from "@expo/vector-icons";
+import { TextSize, AppSettings, DEFAULT_SETTINGS, TEXT_SIZE_PX } from "../types/settings";
 
-export type TextSize = "sm" | "md" | "lg" | "xl";
-
-export interface AppSettings {
-  textSize: TextSize;
-  soundEnabled: boolean;
-}
-
-export const DEFAULT_SETTINGS: AppSettings = {
-  textSize: "md",
-  soundEnabled: true,
-};
-
-export const TEXT_SIZE_PX: Record<TextSize, number> = {
-  sm: 13,
-  md: 16,
-  lg: 19,
-  xl: 22,
-};
+// Re-exported so existing imports elsewhere (e.g. `import { AppSettings } from "./components/SettingsTab"`)
+// keep working without changes.
+export { TextSize, AppSettings, DEFAULT_SETTINGS, TEXT_SIZE_PX };
 
 const TEXT_SIZE_OPTIONS: { id: TextSize; label: string; sampleSize: number }[] = [
   { id: "sm", label: "Small",   sampleSize: 14 },
@@ -58,7 +44,7 @@ export function SettingsTab({ settings, onChange }: Props) {
 
         {/* Text Size */}
         <View style={styles.sectionRow}>
-          <Ionicons name="text-outline" size={13} color="#b8213a" />
+          <Ionicons name="text-outline" size={13} color="#931c21" />
           <Text style={styles.sectionTitle}>Text Size</Text>
         </View>
         <View style={styles.card}>
@@ -86,7 +72,7 @@ export function SettingsTab({ settings, onChange }: Props) {
 
         {/* Sound */}
         <View style={styles.sectionRow}>
-          <Ionicons name={settings.soundEnabled ? "volume-high-outline" : "volume-mute-outline"} size={13} color="#b8213a" />
+          <Ionicons name={settings.soundEnabled ? "volume-high-outline" : "volume-mute-outline"} size={13} color="#931c21" />
           <Text style={styles.sectionTitle}>Sound</Text>
         </View>
         <View style={styles.card}>
@@ -100,7 +86,7 @@ export function SettingsTab({ settings, onChange }: Props) {
             <Switch
               value={settings.soundEnabled}
               onValueChange={(v) => set("soundEnabled", v)}
-              trackColor={{ false: "#d4a0aa", true: "#b8213a" }}
+              trackColor={{ false: "#d4a0aa", true: "#931c21" }}
               thumbColor="#fff"
             />
           </View>
@@ -108,13 +94,13 @@ export function SettingsTab({ settings, onChange }: Props) {
 
         {/* About */}
         <View style={styles.sectionRow}>
-          <Ionicons name="information-circle-outline" size={13} color="#b8213a" />
+          <Ionicons name="information-circle-outline" size={13} color="#931c21" />
           <Text style={styles.sectionTitle}>About</Text>
         </View>
         <View style={styles.card}>
           <View style={styles.aboutRow}>
             <View style={styles.appIconBox}>
-              <Ionicons name="people-outline" size={24} color="#b8213a" />
+              <Ionicons name="people-outline" size={24} color="#931c21" />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.appName}>HR Directory</Text>
@@ -141,7 +127,7 @@ export function SettingsTab({ settings, onChange }: Props) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f8f5f5" },
   header: {
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     paddingHorizontal: 20,
     paddingTop: 52,
     paddingBottom: 16,
@@ -164,7 +150,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.08)",
+    borderColor: "rgba(147,28,33,0.08)",
     overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
@@ -183,17 +169,17 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 12,
     borderWidth: 1.5,
-    borderColor: "rgba(184,33,58,0.12)",
+    borderColor: "rgba(147,28,33,0.12)",
     gap: 4,
   },
   sizeOptionActive: {
-    borderColor: "#b8213a",
+    borderColor: "#931c21",
     backgroundColor: "#fdf0f2",
   },
   sizeOptionSample: { fontWeight: "700", color: "#7a4a52" },
-  sizeOptionSampleActive: { color: "#b8213a" },
+  sizeOptionSampleActive: { color: "#931c21" },
   sizeOptionLabel: { fontSize: 10, color: "#7a4a52", fontWeight: "600" },
-  sizeOptionLabelActive: { color: "#b8213a" },
+  sizeOptionLabelActive: { color: "#931c21" },
   settingRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -220,7 +206,7 @@ const styles = StyleSheet.create({
   },
   appName: { fontSize: 16, fontWeight: "700", color: "#1a0a0d" },
   appOrg: { fontSize: 12, color: "#7a4a52", marginTop: 2 },
-  divider: { height: 1, backgroundColor: "rgba(184,33,58,0.07)", marginHorizontal: 16 },
+  divider: { height: 1, backgroundColor: "rgba(147,28,33,0.07)", marginHorizontal: 16 },
   metaRow: {
     flexDirection: "row",
     justifyContent: "space-between",

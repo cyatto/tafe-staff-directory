@@ -1,11 +1,11 @@
 import React from "react";
 import {
   View,
-  Text,
   FlatList,
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { ScaledText as Text } from "./AppText";
 import { Ionicons } from "@expo/vector-icons";
 import { Contact, getAvatarStyle, getInitials, getDepartmentName } from "../types";
 
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f8f5f5",
   },
   header: {
-    backgroundColor: "#b8213a",
+    backgroundColor: "#931c21",
     paddingHorizontal: 20,
     paddingTop: 52,
     paddingBottom: 16,
@@ -143,13 +143,13 @@ const styles = StyleSheet.create({
   sectionLetter: {
     fontSize: 13,
     fontWeight: "700",
-    color: "#b8213a",
+    color: "#931c21",
     width: 20,
   },
   sectionDivider: {
     flex: 1,
     height: 1,
-    backgroundColor: "rgba(184,33,58,0.12)",
+    backgroundColor: "rgba(147,28,33,0.12)",
   },
   row: {
     flexDirection: "row",
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 8,
     borderWidth: 1,
-    borderColor: "rgba(184,33,58,0.08)",
+    borderColor: "rgba(147,28,33,0.08)",
     // Shadow
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
