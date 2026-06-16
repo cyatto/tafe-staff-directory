@@ -10,6 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { ScaledText as Text } from "./components/AppText";
 import { SettingsProvider, useSettings } from "./components/SettingsContext";
+import { SoundEffectsProvider, useSoundEffects } from "./components/SoundEffectsContext";
 import { HomeTab } from "./components/HomeTab";
 import { SearchTab } from "./components/SearchTab";
 import { ActionsTab, ConfirmDialog } from "./components/ActionsTab";
@@ -55,6 +56,7 @@ function AppContent() {
 
   // Settings (now lives in SettingsContext, not local state)
   const { settings, setSettings, dimOpacity } = useSettings();
+  const { playConfirm } = useSoundEffects();
 
   // ── Handlers ────────────────────────────────────────────────────────────────
 
@@ -88,6 +90,7 @@ function AppContent() {
   function handleDeleteRequest(contact: Contact) {
     setPendingDelete(contact);
     setConfirmVisible(true);
+    playConfirm();
   }
 
   function handleDeleteConfirm() {
@@ -204,7 +207,9 @@ function AppContent() {
 export default function App() {
   return (
     <SettingsProvider>
-      <AppContent />
+      <SoundEffectsProvider>
+        <AppContent />
+      </SoundEffectsProvider>
     </SettingsProvider>
   );
 }

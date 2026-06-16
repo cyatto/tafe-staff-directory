@@ -105,9 +105,11 @@ export function SettingsTab({ settings, onChange }: Props) {
         <View style={styles.card}>
           <View style={styles.settingRow}>
             <View style={styles.settingInfo}>
-              <Text style={styles.settingName}>Sound Effects</Text>
+              <Text style={styles.settingName}>Sound effects</Text>
               <Text style={styles.settingSub}>
-                {settings.soundEnabled ? "Tap sounds are enabled" : "Tap sounds are disabled"}
+                {settings.soundEnabled
+                  ? "Plays for confirmations, errors and successful saves"
+                  : "Sound effects are muted"}
               </Text>
             </View>
             <Switch
