@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { ScaledText as Text } from "./AppText";
+import { useSoundEffects } from "./SoundEffectsContext";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import { Contact, DEPARTMENTS } from "../types";
@@ -103,6 +104,7 @@ export function ContactForm({ contact, onSave, onCancel }: Props) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [saving, setSaving] = useState(false);
   const [touched, setTouched] = useState(false);
+  const { playError, playSaveSuccess } = useSoundEffects();
 
   useEffect(() => {
     if (contact) {
@@ -135,10 +137,14 @@ export function ContactForm({ contact, onSave, onCancel }: Props) {
     setTouched(true);
     const errs = validate(form);
     setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
+    if (Object.keys(errs).length > 0) {
+      playError();
+      return;
+    }
     setSaving(true);
     await new Promise((r) => setTimeout(r, 350));
     setSaving(false);
+    playSaveSuccess();
     onSave(isEdit ? { ...form, id: contact!.id } : form);
   }
 
