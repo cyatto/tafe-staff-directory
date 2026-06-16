@@ -54,7 +54,7 @@ function AppContent() {
   const [pendingDelete, setPendingDelete] = useState<Contact | null>(null);
 
   // Settings (now lives in SettingsContext, not local state)
-  const { settings, setSettings } = useSettings();
+  const { settings, setSettings, dimOpacity } = useSettings();
 
   // ── Handlers ────────────────────────────────────────────────────────────────
 
@@ -192,6 +192,9 @@ function AppContent() {
           setPendingDelete(null);
         }}
       />
+
+      {/* Brightness dim overlay — sits on top of everything, ignores touches */}
+      <View pointerEvents="none" style={[styles.dimOverlay, { opacity: dimOpacity }]} />
     </SafeAreaView>
   );
 }
@@ -208,6 +211,14 @@ export default function App() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#931c21" }, // status bar bg blends with header
+  dimOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "#000",
+  },
   content: { flex: 1 },
   tabBar: {
     flexDirection: "row",

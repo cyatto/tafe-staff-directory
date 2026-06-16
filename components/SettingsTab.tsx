@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import { ScaledText as Text } from "./AppText";
 import { Ionicons } from "@expo/vector-icons";
-import { TextSize, AppSettings, DEFAULT_SETTINGS, TEXT_SIZE_PX } from "../types/settings";
+import Slider from "@react-native-community/slider";
+import { TextSize, AppSettings, DEFAULT_SETTINGS, TEXT_SIZE_PX, MIN_BRIGHTNESS, MAX_BRIGHTNESS } from "../types/settings";
 
 // Re-exported so existing imports elsewhere (e.g. `import { AppSettings } from "./components/SettingsTab"`)
 // keep working without changes.
@@ -68,6 +69,32 @@ export function SettingsTab({ settings, onChange }: Props) {
               );
             })}
           </View>
+        </View>
+
+        {/* Brightness */}
+        <View style={styles.sectionRow}>
+          <Ionicons name="sunny-outline" size={13} color="#931c21" />
+          <Text style={styles.sectionTitle}>Brightness</Text>
+        </View>
+        <View style={styles.card}>
+          <View style={styles.brightnessRow}>
+            <Ionicons name="sunny-outline" size={16} color="#7a4a52" />
+            <Slider
+              style={styles.slider}
+              minimumValue={MIN_BRIGHTNESS}
+              maximumValue={MAX_BRIGHTNESS}
+              step={0.05}
+              value={settings.brightness}
+              onValueChange={(v) => set("brightness", v)}
+              minimumTrackTintColor="#931c21"
+              maximumTrackTintColor="rgba(147,28,33,0.15)"
+              thumbTintColor="#931c21"
+            />
+            <Ionicons name="sunny" size={20} color="#7a4a52" />
+          </View>
+          <Text style={styles.brightnessValue}>
+            {Math.round(((settings.brightness - MIN_BRIGHTNESS) / (MAX_BRIGHTNESS - MIN_BRIGHTNESS)) * 100)}%
+          </Text>
         </View>
 
         {/* Sound */}
@@ -162,6 +189,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 12,
     gap: 8,
+  },
+  brightnessRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingTop: 14,
+    gap: 10,
+  },
+  slider: { flex: 1, height: 36 },
+  brightnessValue: {
+    fontSize: 12,
+    color: "#7a4a52",
+    textAlign: "center",
+    paddingBottom: 12,
   },
   sizeOption: {
     flex: 1,

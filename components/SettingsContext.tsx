@@ -7,6 +7,9 @@ interface SettingsContextValue {
   // How much to multiply every font size by, relative to "Medium".
   // e.g. "lg" -> 19 / 16 = 1.1875
   textScale: number;
+  // How opaque the black dim overlay should be. brightness 1 -> 0 (no dim),
+  // brightness 0.4 -> 0.6 (darkest allowed).
+  dimOpacity: number;
 }
 
 const SettingsContext = createContext<SettingsContextValue | undefined>(undefined);
@@ -15,9 +18,10 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState<AppSettings>(DEFAULT_SETTINGS);
 
   const textScale = TEXT_SIZE_PX[settings.textSize] / TEXT_SIZE_PX.md;
+  const dimOpacity = 1 - settings.brightness;
 
   return (
-    <SettingsContext.Provider value={{ settings, setSettings, textScale }}>
+    <SettingsContext.Provider value={{ settings, setSettings, textScale, dimOpacity }}>
       {children}
     </SettingsContext.Provider>
   );
