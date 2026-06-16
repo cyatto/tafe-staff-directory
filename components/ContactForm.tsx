@@ -207,6 +207,7 @@ export function ContactForm({ contact, onSave, onCancel }: Props) {
                 selectedValue={form.departmentId}
                 onValueChange={(val) => set("departmentId")(val)}
                 style={styles.picker}
+                itemStyle={styles.pickerItem}
               >
                 {DEPARTMENTS.map((d) => (
                   <Picker.Item key={d.id} label={d.name} value={d.id} />
@@ -371,6 +372,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   picker: { color: "#1a0a0d" },
+  pickerItem: { color: "#1a0a0d", fontSize: 16 },
   row2: { flexDirection: "row", gap: 12 },
   btnRow: { flexDirection: "row", gap: 12, marginTop: 8 },
   cancelBtn: {
