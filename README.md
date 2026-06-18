@@ -1,73 +1,38 @@
-# HR Directory — Expo / Snack Port
+# HR Staff Directory
 
-A React Native port of the Red Opal Innovations HR Directory app,
-ready to run in Snack Expo (https://snack.expo.dev).
+A mobile staff directory app built with React Native and Expo. Browse, search, add, edit, and delete staff contacts, with accessibility settings for text size, brightness, and sound effects.
 
----
+## Features
 
-## Files to create in Snack
+- **Directory**: view all staff grouped alphabetically by name
+- **Search**: find staff by name, phone, department, or city, with department filter chips
+- **Actions**: add, edit, or delete the selected contact
+- **Settings**: adjust text size, screen brightness, and toggle sound effects
+- Confirmation dialog before deleting a contact, with a warning sound
+- Form validation on all required fields (name, phone, address, postcode)
 
-Create each file in Snack's editor with the exact paths below:
+## How to Run
 
-```
-App.tsx
-components/HomeTab.tsx
-components/SearchTab.tsx
-components/ContactDetail.tsx
-components/ContactForm.tsx
-components/ActionsTab.tsx       ← also contains ConfirmDialog
-components/SettingsTab.tsx
-types/index.ts
-```
+1. Go to [snack.expo.dev](https://snack.expo.dev) and create a new Snack.
+2. Create each file above with the exact same name and folder path.
+3. In the Dependencies panel (or by typing the import), add `expo-av` if it isn't already included.
+4. Scan the QR code with Expo Go on your phone, or use the in-browser preview.
 
-Start with `App.tsx` (Snack uses this as its entry point automatically).
+## How to Use the App
 
----
+| Action | Steps |
+|---|---|
+| View all staff | Open the **Directory** tab |
+| Find someone | Go to **Search**, type a name/phone/city, or tap a department chip |
+| View full details | Tap any contact row |
+| Add a new contact | Go to **Actions** → **Add Contact**, fill in the form, tap **Add Contact** |
+| Edit a contact | Select a contact, go to **Actions** → **Edit Contact** (or tap **Edit** on their Detail screen) |
+| Delete a contact | Select a contact → **Delete Contact** → confirm in the dialog |
+| Change text size | Go to **Settings** → tap Small/Medium/Large/X-Large |
+| Adjust brightness | Go to **Settings** → enter a number (30–100) in the brightness field |
+| Mute sound effects | Go to **Settings** → toggle off **Confirm / Delete / Error Sounds** |
 
-## Dependencies to add in Snack
+## Known Limitations
 
-Open the **Dependencies** panel (left sidebar) and add:
-
-| Package                        | Version  |
-|-------------------------------|----------|
-| `@react-native-picker/picker` | `2.7.5`  |
-
-Everything else used (`@expo/vector-icons`, `react-native` core, etc.)
-is already included in Snack by default.
-
----
-
-## What was changed from the original
-
-| Original (web)              | React Native replacement          |
-|-----------------------------|-----------------------------------|
-| `div` / `span`              | `View` / `Text`                   |
-| `button`                    | `TouchableOpacity`                |
-| `input` / `select`          | `TextInput` / `Picker`            |
-| Tailwind CSS classes        | `StyleSheet.create({})`           |
-| `lucide-react` icons        | `@expo/vector-icons` (Ionicons)   |
-| `localStorage`              | In-memory state (no persistence)  |
-| `window.innerWidth`         | Not needed (dropped tablet split) |
-| CSS animations              | Not needed (dropped)              |
-| Web Audio API (sounds)      | Dropped (not available in Expo Go)|
-| `fixed` overlay (dialog)    | `Modal` component                 |
-| `overflow-y-auto`           | `ScrollView` / `FlatList`         |
-
----
-
-## Notes
-
-- **Sound effects** were removed. The original used the Web Audio API
-  which is not available in React Native. You could add sounds later
-  using `expo-av`.
-
-- **Settings persistence** was removed (original used `localStorage`).
-  To add it back, install `@react-native-async-storage/async-storage`
-  and load/save settings in `SettingsTab.tsx`.
-
-- **Text size setting** stores the preference in state but does not
-  currently propagate the font size down to all components. That would
-  require passing the `textSize` value through props or a Context.
-
-- The **tablet split-panel layout** was dropped. On mobile, the app
-  uses a simple stack: list → detail → form.
+- Data is stored in memory only: refreshing or reloading the app resets contacts and settings back to defaults.
+- No backend/remote database is connected; all data lives locally within the app session.
